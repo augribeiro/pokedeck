@@ -26,9 +26,4 @@ export class ApiRequesterService {
     const headers = this.getHeaders();
     return this.http.get(`${this.baseApi}/?q=name:${name}*`, { headers })
   }
-
-  // testCall(): void {
-  //   const headers = this.headers;
-  //   this.http.get(`${this.baseApi}`, { headers }).subscribe();
-  // }
 }
