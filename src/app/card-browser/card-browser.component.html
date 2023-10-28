@@ -1,1 +1,8 @@
-<p>card-browser works!</p>
+<input type="text" [(ngModel)]="inputValue">
+<button (click)="filter()">Filter</button>
+
+<li *ngFor="let card of cardList">
+  {{ card.name }}
+  {{ card.subtype }}
+  <button (click)="addCard(card)">add card!</button>
+</li>

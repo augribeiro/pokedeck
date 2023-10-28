@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, pipe, map } from 'rxjs';
+import { Observable, Subject, map } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -7,11 +7,18 @@ import { Observable, Subject, pipe, map } from 'rxjs';
 export class DeckEditService {
 
   currentEdit = new Subject<Array<any>>();
-  currentDeck = new Array<any>();
+  private _deck = new Array<any>
 
   constructor() { }
 
   addCard(card: any) {
-    this.currentEdit.pipe(map(deck)=> deck.push(card))
+    this._deck.push(card);
+    this.currentEdit.next(this._deck);
+  }
+
+  removeCard(card: any) {
+    this._deck.splice(this._deck.findIndex(cardInDeck => cardInDeck.name === card.name));
+    this.currentEdit.next(this._deck);
   }
 }
+

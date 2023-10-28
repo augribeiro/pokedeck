@@ -1,1 +1,5 @@
-<p>deck-manager works!</p>
+<p>{{name}}</p>
+<li *ngFor="let card of deckInEdit">
+  {{card.name}}
+  <img src="{{card.images.small}}" alt="">
+</li>
