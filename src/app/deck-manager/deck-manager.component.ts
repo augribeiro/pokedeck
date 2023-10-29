@@ -1,5 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DeckEditService } from './service/deck-edit.service';
+import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
+import { Deck } from 'src/utils/models/deck';
 
 @Component({
   selector: 'poke-deck-manager',
@@ -8,10 +10,10 @@ import { DeckEditService } from './service/deck-edit.service';
 })
 export class DeckManagerComponent implements OnInit, OnDestroy {
 
-  deckInEdit = new Array<any>();
-  name = 'Current deck';
+  deckInEdit = new Deck();
 
-  constructor(private deckEditService: DeckEditService) { }
+  constructor(private deckEditService: DeckEditService) {
+  }
 
   ngOnInit(): void {
     this.deckEditService.currentEdit.subscribe(deckInEdit => this.deckInEdit = deckInEdit)

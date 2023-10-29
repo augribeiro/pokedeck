@@ -29,4 +29,8 @@ export class CardBrowserComponent implements OnInit {
     this.deckEditService.addCard(card);
   }
 
+  viewDetail(card: any) {
+    return card;
+  }
+
 }

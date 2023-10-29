@@ -1,8 +1,16 @@
-<input type="text" [(ngModel)]="inputValue">
-<button class="bg-blue-500 text-white px-4 py-2 rounded" (click)="filter()">Filter</button>
+<div class="flex">
+  <input class="m-2 rounded" type="text" [(ngModel)]="inputValue">
+  <button class="bg-blue-500 text-white m-2 px-2 py-2 rounded" (click)="filter()">Search</button>
+</div>
 
-<li *ngFor="let card of cardList">
-  {{ card.name }}
-  {{ card.subtype }}
-  <button (click)="addCard(card)">add card!</button>
-</li>
+<div class="flex max-h-full flex-wrap overflow-auto">
+  <div class="border p-4 mb-4" *ngFor="let card of cardList">
+    <h2 class="text-lg mb-2">{{ card.name }}</h2>
+    <img [src]="card.images.small" alt="card.name" class="mb-2 rounded">
+    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" (click)="addCard(card)">
+      Add to Deck
+    </button>
+    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+      (click)="viewDetail(card)">Inspect</button>
+  </div>
+</div>

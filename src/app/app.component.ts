@@ -16,7 +16,6 @@ export class AppComponent implements OnInit {
   }
 
   toggleSidebar() {
-    console.log(1234)
-    this.expandedSidebar === !this.expandedSidebar;
+    this.expandedSidebar = !this.expandedSidebar;
   }
 }
