@@ -8,10 +8,15 @@ import { DeckEditService } from './deck-manager/service/deck-edit.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  expandedSidebar = true;
 
   constructor() { }
 
   ngOnInit() {
   }
 
+  toggleSidebar() {
+    console.log(1234)
+    this.expandedSidebar === !this.expandedSidebar;
+  }
 }
