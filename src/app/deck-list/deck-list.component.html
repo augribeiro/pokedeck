@@ -1,1 +1,9 @@
-<p>deck-list works!</p>
+aaa
+<li class="list-none divide-y" *ngFor="let deck of deckList">
+  <div class="flex justify-between bg-gradient-to-r from-blue-500 to-transparent 
+    p-2 rounded items-center border">
+    <span class="font-bold text-slate-50">{{ deck.name }}</span>
+    <span class="font-bold p-2 rounded bg-yellow-700 text-slate-50">x{{ deck.cardList.length }}</span>
+    <!-- remove/add more function should go here, maybe with flex -->
+  </div>
+</li>

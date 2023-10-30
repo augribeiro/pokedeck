@@ -3,7 +3,7 @@
 <button class="p-2 m-2 bg-blue-400 rounded text-center" (click)="saveDeck()">
   <i class="fa-regular fa-floppy-disk text-2xl text-slate-50"></i>
 </button>
-<button class="p-2 m-2 bg-red-500 rounded text-center" (click)="saveDeck()">
+<button class="p-2 m-2 bg-red-500 rounded text-center" (click)="discardChanges()">
   <i class="fa-solid fa-trash text-2xl text-slate-50"></i>
 </button>
 <li class="list-none divide-y" *ngFor="let card of groupedDeck | keyvalue">

@@ -9,7 +9,7 @@ import { DeckService } from '../utils/services/deck.service';
 })
 export class AppComponent implements OnInit {
   expandedSidebar = true;
-  showDeckList = false;
+  sidebarState = 'deck-manager';
 
   constructor() { }
 
@@ -18,5 +18,9 @@ export class AppComponent implements OnInit {
 
   toggleSidebar() {
     this.expandedSidebar = !this.expandedSidebar;
+  }
+
+  handleSidebarEvent(event: string) {
+    this.sidebarState = event;
   }
 }

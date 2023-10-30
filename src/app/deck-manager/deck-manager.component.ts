@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
 import { DeckService } from '../../utils/services/deck.service';
 import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
 
@@ -10,6 +10,8 @@ import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
 export class DeckManagerComponent implements OnInit, OnDestroy {
 
   groupedDeck = new Map<Card, number>;
+
+  @Output() changeSidebar = new EventEmitter<string>();
 
   constructor(public deckService: DeckService) { }
 
@@ -30,12 +32,15 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
     this.deckService.currentEdit.unsubscribe();
   }
 
+  // usar um ENUM em futuras versões
   saveDeck() {
     this.deckService.saveDeck();
+    this.changeSidebar.emit('deck-list');
   }
 
-  deleteDeck() {
-    this.deckService.deleteDeck();
+  discardChanges() {
+    this.deckService.discardChanges();
+    this.changeSidebar.emit('deck-list');
   }
 
   removeCard(card: Card): void {

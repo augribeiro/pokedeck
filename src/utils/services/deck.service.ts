@@ -61,6 +61,10 @@ export class DeckService {
     this.resetDeck();
   }
 
+  discardChanges() {
+    this.resetDeck();
+  }
+
   resetDeck() {
     this._currentDeck = new Deck();
     this.currentEdit.next(this._currentDeck);
