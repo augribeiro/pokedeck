@@ -1,23 +1,25 @@
 <div class="flex">
   <input class="m-2 rounded" type="text" [(ngModel)]="inputValue">
-  <button class="bg-blue-500 text-white m-2 px-2 py-2 rounded" (click)="filter()">Search</button>
+  <button class="bg-blue-500 text-slate-50 m-2 px-2 py-2 rounded" (click)="filter()">Search</button>
 </div>
 
 <div class="flex max-h-full flex-wrap overflow-auto">
 
-  <div class="border p-4 mb-4" *ngFor="let card of cardList">
-    <h2 class="text-lg mb-2">{{ card.name }}</h2>
-    <img [src]="card.images.small" alt="card.name" class="mb-2 rounded">
+  <div class="p-4 " *ngFor="let card of cardList">
+    <h2 class="text-lg mb-2 text-slate-50">{{ card.name }}</h2>
+    <img [src]="card.images.small" alt="card.name"
+      class="mb-2 rounded object-cover shadow-md hover:shadow-xl transform hover:scale-105 transition-all duration-300"
+      (click)="viewDetail(card)">
     <div class="flex flex-wrap">
-      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1" (click)="addCard(card)">
+      <button class="bg-blue-500 hover:bg-blue-700 text-slate-50 font-bold py-2 px-4 rounded flex-1"
+        (click)="addCard(card)">
         +
       </button>
-      <button class="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded m-1 disabled:bg-gray-400"
-        disabled (click)="removeCard(card)">
+      <button
+        class="bg-blue-500 hover:bg-blue-700  text-slate-50 font-bold py-2 px-4 rounded flex-1 disabled:bg-gray-400"
+        [disabled]="!containsCard(card)" (click)="removeCard(card)">
         -
       </button>
-      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        (click)="viewDetail(card)">Inspect</button>
     </div>
   </div>
 

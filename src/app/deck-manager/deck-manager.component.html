@@ -1,4 +1,9 @@
-<input class="bg-transparent p-2 focus:outline-none" type="text" [value]="deckInEdit.name">
-<li *ngFor="let card of deckInEdit.cardList">
-  {{card.name}}
+<input class="bg-transparent p-2 focus:outline-none text-slate-50 my-2" type="text" [value]="">
+<li class="list-none" *ngFor="let card of groupedDeck | keyvalue">
+  <div class="flex justify-between bg-gradient-to-r from-blue-500 to-transparent 
+    p-2 rounded bg-cover bg-center" (click)="removeCard(card.key)">
+    <span class="font-bold text-slate-50">{{card.key.name}}</span>
+    <span class="font-bold p-2 rounded bg-yellow-700 text-slate-50 pri">{{card.value}}</span>
+    <!-- remove/add more function should go here, maybe with flex -->
+  </div>
 </li>

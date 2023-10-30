@@ -2,6 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DeckEditService } from './service/deck-edit.service';
 import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
 import { Deck } from 'src/utils/models/deck';
+import { map, reduce } from 'rxjs';
 
 @Component({
   selector: 'poke-deck-manager',
@@ -10,17 +11,31 @@ import { Deck } from 'src/utils/models/deck';
 })
 export class DeckManagerComponent implements OnInit, OnDestroy {
 
-  deckInEdit = new Deck();
+  groupedDeck = new Map<Card, number>;
 
   constructor(private deckEditService: DeckEditService) {
   }
 
   ngOnInit(): void {
-    this.deckEditService.currentEdit.subscribe(deckInEdit => this.deckInEdit = deckInEdit);
+    this.deckEditService.currentEdit.subscribe(deckInEdit => {
+      this.groupedDeck.clear();
+      deckInEdit.cardList.forEach(card => {
+        if (this.groupedDeck.has(card)) {
+          this.groupedDeck.set(card, this.groupedDeck.get(card)! + 1);
+        } else {
+          this.groupedDeck.set(card, 1);
+        }
+      })
+
+    });
   }
 
   ngOnDestroy(): void {
     this.deckEditService.currentEdit.unsubscribe();
+  }
+
+  removeCard(card: Card): void {
+    this.deckEditService.removeCard(card);
   }
 
 }

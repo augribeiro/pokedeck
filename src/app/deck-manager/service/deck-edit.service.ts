@@ -39,5 +39,11 @@ export class DeckEditService {
     this._deck = new Deck();
     this.currentEdit.next(this._deck);
   }
+
+  containsCard(card: Card) {
+    const cardIndex = this._deck.cardList.findIndex(cardInDeck => cardInDeck.name === card.name && cardInDeck.id === card.id);
+
+    return cardIndex === -1 ? false : true;
+  }
 }
 

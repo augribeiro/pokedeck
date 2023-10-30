@@ -18,19 +18,24 @@ export class CardBrowserComponent implements OnInit {
 
   ngOnInit() {
     this.deckEditService.currentEdit.subscribe(deck => console.log(deck))
+    this.filter();
   }
 
-  filter() {
+  filter(): void {
     this.apiRequester.searchByName(this.inputValue).subscribe((resp) => {
       this.cardList = resp.data;
     });
   }
 
-  addCard(card: Card) {
+  addCard(card: Card): void {
     this.deckEditService.addCard(card);
   }
 
-  removeCard(card: Card) {
+  containsCard(card: Card) {
+    return this.deckEditService.containsCard(card);
+  }
+
+  removeCard(card: Card): void {
     this.deckEditService.removeCard(card);
   }
 
