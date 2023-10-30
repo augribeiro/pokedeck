@@ -10,10 +10,15 @@ export class DeckEditService {
 
   currentEdit = new Subject<Deck>();
   private _deck: Deck;
+  private _savedDecks = new Map<Deck, string>();
 
   constructor() {
     this._deck = new Deck();
     this.currentEdit.next(this._deck);
+  }
+
+  get name() {
+    return this._deck.name;
   }
 
   addCard(card: Card): void {
@@ -34,7 +39,7 @@ export class DeckEditService {
   }
 
   saveDeck() {
-    // persist in session ? idk
+    this._savedDecks.set(this._deck, this._deck.name);
   }
 
   deleteDeck() {

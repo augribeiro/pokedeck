@@ -1,8 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { DeckEditService } from './service/deck-edit.service';
 import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
-import { Deck } from 'src/utils/models/deck';
-import { map, reduce } from 'rxjs';
 
 @Component({
   selector: 'poke-deck-manager',
@@ -13,7 +11,7 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
 
   groupedDeck = new Map<Card, number>;
 
-  constructor(private deckEditService: DeckEditService) {
+  constructor(public deckEditService: DeckEditService) {
   }
 
   ngOnInit(): void {
@@ -32,6 +30,10 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.deckEditService.currentEdit.unsubscribe();
+  }
+
+  saveDeck() {
+    this.deckEditService.saveDeck();
   }
 
   removeCard(card: Card): void {

@@ -1,5 +1,9 @@
-<input class="bg-transparent p-2 focus:outline-none text-slate-50 my-2" type="text" [value]="">
-<li class="list-none" *ngFor="let card of groupedDeck | keyvalue">
+<input class="bg-transparent p-2 focus:outline-none focus:ring focus:border-blue-500 text-slate-50 my-4 rounded"
+  type="text" [value]="deckEditService.name">
+<button class="p-2 m-2 bg-blue-400 rounded text-center" (click)="saveDeck()">
+  <i class="fa-regular fa-floppy-disk text-2xl text-slate-50"></i>
+</button>
+<li class="list-none divide-y" *ngFor="let card of groupedDeck | keyvalue">
   <div class="flex justify-between bg-gradient-to-r from-blue-500 to-transparent 
     p-2 rounded items-center border" (click)="removeCard(card.key)">
     <span class="font-bold text-slate-50">{{card.key.name}}</span>
