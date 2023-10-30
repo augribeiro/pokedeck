@@ -16,9 +16,11 @@ export class DeckEditService {
     this.currentEdit.next(this._deck);
   }
 
-  addCard(card: Card) {
-    this._deck.cardList.push(card);
-    this.currentEdit.next(this._deck);
+  addCard(card: Card): void {
+    if (this.canAddCard(card, this._deck)) {
+      this._deck.cardList.push(card);
+      this.currentEdit.next(this._deck);
+    }
   }
 
   removeCard(card: Card) {
@@ -44,6 +46,13 @@ export class DeckEditService {
     const cardIndex = this._deck.cardList.findIndex(cardInDeck => cardInDeck.name === card.name && cardInDeck.id === card.id);
 
     return cardIndex === -1 ? false : true;
+  }
+
+  private canAddCard(card: Card, deck: Deck): boolean {
+    if (deck.cardList.length + 1 === 60) { return false }
+
+    const repeatedCards = deck.cardList.filter(cardInDeck => cardInDeck.name === card.name).length
+    return repeatedCards >= 4 ? false : true;
   }
 }
 
