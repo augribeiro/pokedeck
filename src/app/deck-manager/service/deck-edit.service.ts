@@ -10,7 +10,7 @@ export class DeckEditService {
 
   currentEdit = new Subject<Deck>();
   private _currentDeck: Deck;
-  private _savedDecks = new Array<Deck>();
+  savedDecks = new Array<Deck>();
 
   constructor() {
     this._currentDeck = new Deck();
@@ -45,17 +45,17 @@ export class DeckEditService {
 
   // returns deck index if found, -1 otherwise
   // extracted into function in case I have time to make a deck search ( probably won't ): )
-  findDeck(deckName: string): number {
-    return this._savedDecks.findIndex((savedDeck) => this._currentDeck.name === savedDeck.name);
+  findDeckIndex(deckName: string): number {
+    return this.savedDecks.findIndex((savedDeck) => this._currentDeck.name === savedDeck.name);
   }
 
   saveDeck() {
-    const deckIndex = this.findDeck(this._currentDeck.name);
+    const deckIndex = this.findDeckIndex(this._currentDeck.name);
 
-    if (deckIndex) {
-      this._savedDecks[deckIndex] = this._currentDeck;
+    if (deckIndex >= 0) {
+      this.savedDecks[deckIndex] = this._currentDeck;
     } else {
-      this._savedDecks.push(this._currentDeck);
+      this.savedDecks.push(this._currentDeck);
     }
 
     this.resetDeck();
@@ -64,11 +64,12 @@ export class DeckEditService {
   resetDeck() {
     this._currentDeck = new Deck();
     this.currentEdit.next(this._currentDeck);
+    console.log(this.savedDecks)
   }
 
   deleteDeck() {
-    const deckIndex = this.findDeck(this._currentDeck.name)
-    this._savedDecks.splice(deckIndex, 1);
+    const deckIndex = this.findDeckIndex(this._currentDeck.name)
+    this.savedDecks.splice(deckIndex, 1);
     this.resetDeck();
   }
 
