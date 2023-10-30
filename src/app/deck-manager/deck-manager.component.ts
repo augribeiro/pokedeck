@@ -24,7 +24,6 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
           this.groupedDeck.set(card, 1);
         }
       })
-
     });
   }
 

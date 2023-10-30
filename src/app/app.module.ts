@@ -7,12 +7,14 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { DeckManagerComponent } from './deck-manager/deck-manager.component';
 import { CardBrowserComponent } from './card-browser/card-browser.component';
+import { DeckListComponent } from './deck-list/deck-list.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DeckManagerComponent,
-    CardBrowserComponent
+    CardBrowserComponent,
+    DeckListComponent
   ],
   imports: [
     BrowserModule,
