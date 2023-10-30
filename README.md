@@ -1,27 +1,17 @@
-# Pokedeck
+Projeto para um teste técnico
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.17.
+Neste projeto eu tentei não inovar muito em arquitetura de projeto ou conceitos muito mais complexos do que o necessário pra tarefa proposta
 
-## Development server
+Usei como base o site da mobalytics (https://app.mobalytics.gg/pt_br/lor/deck-builder) pra criar o layout, também fiz alguns rascunhos a mão pra facilitar o processo inicial
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+Usei um Subject para emitir o Deck em edição pras outras partes da aplicação
+E tentei explorar um pouco o Tailwind, acabou que o projeto serviu de uma boa prática.
 
-## Code scaffolding
+Usei também a lib pokemon-tcg-sdk-typescript com tipagem dos dados da API pra facilitar um pouco a criação dos contratos/modelos
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Se eu tivesse que mudar algo, eu teria perdido menos tempo tentando melhorar a lista de cartas do deck e teria investido em outras partes de UI
 
-## Build
+Segue as versões do angular e do tailwind conforme o package.json
+@angular/core: ~16.2.11
+tailwindcss: ^3.3.5
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
