@@ -25,6 +25,10 @@ export class DeckService {
     this._currentDeck.name = name;
   }
 
+  get deckSize() {
+    return this._currentDeck.cardList.length;
+  }
+
   addCard(card: Card): void {
     if (this.canAddCard(card, this._currentDeck)) {
       this._currentDeck.cardList.push(card);
@@ -49,8 +53,9 @@ export class DeckService {
     return this.savedDecks.findIndex((savedDeck) => this._currentDeck.name === savedDeck.name);
   }
 
-  saveDeck() {
+  saveDeck(newName?: string) {
     const deckIndex = this.findDeckIndex(this._currentDeck.name);
+    this._currentDeck.name = newName ? newName : this._currentDeck.name;
 
     if (deckIndex >= 0) {
       this.savedDecks[deckIndex] = this._currentDeck;
@@ -58,7 +63,7 @@ export class DeckService {
       this.savedDecks.push(this._currentDeck);
     }
 
-    this.resetDeck();
+    // this.resetDeck();
   }
 
   editDeck(deck: Deck) {
@@ -80,11 +85,11 @@ export class DeckService {
   deleteDeck(deck: Deck) {
     const deckIndex = this.findDeckIndex(deck.name);
     this.savedDecks.splice(deckIndex, 1);
-    this.resetDeck();
+    // this.resetDeck();
   }
 
   containsCard(card: Card) {
-    const cardIndex = this._currentDeck.cardList.findIndex(cardInDeck => cardInDeck.name === card.name && cardInDeck.id === card.id);
+    const cardIndex = this._currentDeck?.cardList?.findIndex(cardInDeck => cardInDeck.name === card.name && cardInDeck.id === card.id);
 
     return cardIndex === -1 ? false : true;
   }

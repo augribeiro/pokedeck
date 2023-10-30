@@ -19,6 +19,11 @@ export class DeckListComponent {
     })
   }
 
+  createDeck() {
+    this.deckService.resetDeck();
+    this.changeSidebar.emit('deck-manager');
+  }
+
   deleteDeck(deck: Deck) {
     this.deckService.deleteDeck(deck);
   }

@@ -10,6 +10,8 @@ import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
 export class DeckManagerComponent implements OnInit, OnDestroy {
 
   groupedDeck = new Map<Card, number>;
+  currentDeckName = '';
+  deckSize = 0;
 
   @Output() changeSidebar = new EventEmitter<string>();
 
@@ -17,7 +19,9 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.deckService.currentEdit.subscribe(deckInEdit => {
+      this.currentDeckName = Boolean(deckInEdit.name) ? 'New Deck' : deckInEdit.name;
       this.groupedDeck.clear();
+      this.deckSize = this.deckService.deckSize
       deckInEdit.cardList.forEach(card => {
         if (this.groupedDeck.has(card)) {
           this.groupedDeck.set(card, this.groupedDeck.get(card)! + 1);
@@ -34,12 +38,11 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
 
   // usar um ENUM em futuras versões
   saveDeck() {
-    this.deckService.saveDeck();
+    this.deckService.saveDeck(this.currentDeckName);
     this.changeSidebar.emit('deck-list');
   }
 
   discardChanges() {
-    this.deckService.discardChanges();
     this.changeSidebar.emit('deck-list');
   }
 

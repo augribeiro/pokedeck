@@ -1,6 +1,7 @@
-<input class="bg-transparent p-2 focus:outline-none focus:ring focus:border-blue-500 text-slate-50 my-4 rounded"
-  type="text" [value]="deckService.name">
-<button class="p-2 m-2 bg-blue-400 rounded text-center" (click)="saveDeck()">
+<input class="bg-slate-300 p-2 focus:outline-none ring focus:border-blue-500 text-slate-800 my-4 rounded" type="text"
+  placeholder="Deck Name" [(ngModel)]="currentDeckName">
+<button class="p-2 m-2 bg-blue-400 rounded text-center" [ngClass]="{ 'disabled bg-gray-200': deckSize < 4 }"
+  (click)="saveDeck()">
   <i class="fa-regular fa-floppy-disk text-2xl text-slate-50"></i>
 </button>
 <button class="p-2 m-2 bg-red-500 rounded text-center" (click)="discardChanges()">
@@ -11,6 +12,5 @@
     p-2 rounded items-center border" (click)="removeCard(card.key)">
     <span class="font-bold text-slate-50">{{card.key.name}}</span>
     <span class="font-bold p-2 rounded bg-yellow-700 text-slate-50">x{{card.value}}</span>
-    <!-- remove/add more function should go here, maybe with flex -->
   </div>
 </li>

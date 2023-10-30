@@ -1,4 +1,0 @@
-- Deck Editing Save/Delete Feature
-- Inspect modal with card details
-- Deck details with colors, supertypes
-- Advanced Filters

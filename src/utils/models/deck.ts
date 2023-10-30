@@ -5,7 +5,7 @@ export class Deck {
   cardList: Array<Card>;
 
   constructor() {
-    this.name = 'New Deck';
+    this.name = '';
     this.cardList = new Array<Card>();
   }
 }

@@ -1,6 +1,7 @@
 <div class="flex">
-  <input class="m-2 rounded" type="text" [(ngModel)]="inputValue">
-  <button class="bg-blue-500 text-slate-50 m-2 px-2 py-2 rounded" (click)="filter()">Search</button>
+  <input class="bg-slate-300 p-2 focus:outline-none ring focus:border-blue-500 text-slate-800 my-4 rounded" type="text"
+    [(ngModel)]="inputValue">
+  <button class="bg-blue-500 text-slate-50 m-4 p-2 rounded" (click)="filter()">Search</button>
 </div>
 
 <div class="flex max-h-full flex-wrap overflow-auto">
