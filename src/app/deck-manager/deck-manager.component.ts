@@ -16,7 +16,7 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.deckEditService.currentEdit.subscribe(deckInEdit => this.deckInEdit = deckInEdit)
+    this.deckEditService.currentEdit.subscribe(deckInEdit => this.deckInEdit = deckInEdit);
   }
 
   ngOnDestroy(): void {

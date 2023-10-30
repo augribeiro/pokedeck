@@ -22,7 +22,12 @@ export class DeckEditService {
   }
 
   removeCard(card: Card) {
-    this._deck.cardList.splice(this._deck.cardList.findIndex(cardInDeck => cardInDeck.name === card.name));
+    const cardIndex = this._deck.cardList.findIndex(cardInDeck => cardInDeck.name === card.name && cardInDeck.id === card.id);
+
+    // if card not found, do nothing (there's probably a fancier way to do this, but I'm tired :( )
+    if (cardIndex === -1) { return; }
+
+    this._deck.cardList.splice(cardIndex, 1);
     this.currentEdit.next(this._deck);
   }
 

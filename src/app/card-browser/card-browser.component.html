@@ -4,13 +4,21 @@
 </div>
 
 <div class="flex max-h-full flex-wrap overflow-auto">
+
   <div class="border p-4 mb-4" *ngFor="let card of cardList">
     <h2 class="text-lg mb-2">{{ card.name }}</h2>
     <img [src]="card.images.small" alt="card.name" class="mb-2 rounded">
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mr-2" (click)="addCard(card)">
-      Add to Deck
-    </button>
-    <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-      (click)="viewDetail(card)">Inspect</button>
+    <div class="flex flex-wrap">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded m-1" (click)="addCard(card)">
+        +
+      </button>
+      <button class="bg-blue-500 hover:bg-blue-700  text-white font-bold py-2 px-4 rounded m-1 disabled:bg-gray-400"
+        disabled (click)="removeCard(card)">
+        -
+      </button>
+      <button class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
+        (click)="viewDetail(card)">Inspect</button>
+    </div>
   </div>
+
 </div>
