@@ -36,6 +36,10 @@ export class DeckManagerComponent implements OnInit, OnDestroy {
     this.deckEditService.saveDeck();
   }
 
+  deleteDeck() {
+    this.deckEditService.deleteDeck();
+  }
+
   removeCard(card: Card): void {
     this.deckEditService.removeCard(card);
   }
