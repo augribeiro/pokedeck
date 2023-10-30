@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRequesterService } from '../api-requester/api-requester.service';
-import { DeckEditService } from '../deck-manager/service/deck-edit.service';
+import { DeckService } from '../../utils/services/deck.service';
 import { Card } from 'pokemon-tcg-sdk-typescript/dist/sdk';
 
 @Component({
@@ -14,10 +14,10 @@ export class CardBrowserComponent implements OnInit {
   cardList!: null;
   disableRemove = true;
 
-  constructor(private apiRequester: ApiRequesterService, private deckEditService: DeckEditService) { }
+  constructor(private apiRequester: ApiRequesterService, private deckService: DeckService) { }
 
   ngOnInit() {
-    this.deckEditService.currentEdit.subscribe(deck => console.log(deck))
+    this.deckService.currentEdit.subscribe(deck => console.log(deck))
     this.filter();
   }
 
@@ -28,15 +28,15 @@ export class CardBrowserComponent implements OnInit {
   }
 
   addCard(card: Card): void {
-    this.deckEditService.addCard(card);
+    this.deckService.addCard(card);
   }
 
   containsCard(card: Card) {
-    return this.deckEditService.containsCard(card);
+    return this.deckService.containsCard(card);
   }
 
   removeCard(card: Card): void {
-    this.deckEditService.removeCard(card);
+    this.deckService.removeCard(card);
   }
 
   viewDetail(card: Card) {

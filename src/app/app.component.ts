@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiRequesterService } from './api-requester/api-requester.service';
-import { DeckEditService } from './deck-manager/service/deck-edit.service';
+import { DeckService } from '../utils/services/deck.service';
 
 @Component({
   selector: 'poke-root',
@@ -9,6 +9,7 @@ import { DeckEditService } from './deck-manager/service/deck-edit.service';
 })
 export class AppComponent implements OnInit {
   expandedSidebar = true;
+  showDeckList = false;
 
   constructor() { }
 

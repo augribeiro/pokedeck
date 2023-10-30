@@ -6,7 +6,7 @@ import { Deck } from 'src/utils/models/deck';
 @Injectable({
   providedIn: 'root'
 })
-export class DeckEditService {
+export class DeckService {
 
   currentEdit = new Subject<Deck>();
   private _currentDeck: Deck;

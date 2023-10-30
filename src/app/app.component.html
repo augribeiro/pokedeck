@@ -7,7 +7,11 @@
     <button class=" absolute -top-3 text-slate-50 rounded mt-4 shadow" (click)="toggleSidebar()">
       <i class="fa-solid fa-arrow-right-arrow-left"></i>
     </button>
-    <poke-deck-manager></poke-deck-manager>
-    <poke-deck-list></poke-deck-list>
+    <ng-template *ngIf="showDeckList; else deckManager">
+      <poke-deck-list></poke-deck-list>
+    </ng-template>
+    <ng-template #deckManager>
+      <poke-deck-manager></poke-deck-manager>
+    </ng-template>
   </div>
 </div>
