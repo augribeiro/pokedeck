@@ -61,6 +61,13 @@ export class DeckService {
     this.resetDeck();
   }
 
+  editDeck(deck: Deck) {
+    const index = this.findDeckIndex(deck.name);
+
+    this._currentDeck = this.savedDecks[index];
+    this.currentEdit.next(this._currentDeck);
+  }
+
   discardChanges() {
     this.resetDeck();
   }
@@ -68,11 +75,10 @@ export class DeckService {
   resetDeck() {
     this._currentDeck = new Deck();
     this.currentEdit.next(this._currentDeck);
-    console.log(this.savedDecks)
   }
 
-  deleteDeck() {
-    const deckIndex = this.findDeckIndex(this._currentDeck.name)
+  deleteDeck(deck: Deck) {
+    const deckIndex = this.findDeckIndex(deck.name);
     this.savedDecks.splice(deckIndex, 1);
     this.resetDeck();
   }

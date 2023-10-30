@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
+import { take } from 'rxjs';
 import { Deck } from 'src/utils/models/deck';
 import { DeckService } from 'src/utils/services/deck.service';
 
@@ -10,13 +11,21 @@ import { DeckService } from 'src/utils/services/deck.service';
 export class DeckListComponent {
 
   deckList = new Array<Deck>;
+  @Output() changeSidebar = new EventEmitter<string>();
 
   constructor(public deckService: DeckService) {
-    this.deckService.currentEdit.subscribe(() => {
+    this.deckService.currentEdit.subscribe((deck: Deck) => {
       this.deckList = this.deckService.savedDecks;
     })
   }
 
+  deleteDeck(deck: Deck) {
+    this.deckService.deleteDeck(deck);
+  }
 
+  editDeck(deck: Deck) {
+    this.deckService.editDeck(deck);
+    this.changeSidebar.emit('deck-manager');
+  }
 
 }
